@@ -96,6 +96,28 @@ ds=[]
 		else:
 			break
 		parent= ds[i]
+# Back tracking
+# ======================================================================================================================================================================= #
+
+#### creating a list for storing ID's and states of shortest path
+	shortest_path=[]	
+	node_oid=ds[len(ds)-1][1]
+	print(len(ds))
+	while(node_oid>=0):
+		key=ds[node_oid][0]
+		node_pid=ds[node_oid][2]
+		shortest_path.append([key,node_oid,node_pid])
+		if(node_oid==0):
+			break
+		node_oid=node_pid
+		
+		
+	# print(shortest_path)
+	i=len(shortest_path)
+	
+	print(Reverse(shortest_path)) 
+
+	
 
 
 
