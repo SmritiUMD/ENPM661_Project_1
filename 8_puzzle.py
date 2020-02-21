@@ -4,7 +4,25 @@
 import numpy as np
 a=input("Enter numbers from 0-8 seperated by spaces")
 b = np.array([int(i) for i in a.split(',')])
+olvable=True
+inv_count = 0; 
 
+# Checking if the given matrix is solvable
+
+for p in range(8):
+	for q in range(p+1,9):
+		if(b[p] and b[q] and b[q]>b[p]):
+			inv_count+=1
+
+if(inv_count%2):
+	print('Unsolvable')
+	solvable=False
+
+
+a=np.reshape(b, (3, 3))
+goal=np.array([[1,2,3],[4,5,6],[7,8,0]])  
+
+# Creating text file to write the Node information
 
 
 
