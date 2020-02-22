@@ -1,14 +1,22 @@
+#-------------> Project 01 <---------------#
 
+# Course    :-> ENPM671 - Planning for Autonomous Robots
+# Date      :-> 21 February 2020
+# Author    :-> Smriti Gupta
+
+# Import Section for Importing library
 
 
 import numpy as np
 a=input("Enter numbers from 0-8 seperated by spaces")
 b = np.array([int(i) for i in a.split(',')])
-olvable=True
+
+
+solvable=True
 inv_count = 0; 
 
 # Checking if the given matrix is solvable
-
+# ======================================================================================================================================================================= #
 for p in range(8):
 	for q in range(p+1,9):
 		if(b[p] and b[q] and b[q]>b[p]):
@@ -23,19 +31,27 @@ a=np.reshape(b, (3, 3))
 goal=np.array([[1,2,3],[4,5,6],[7,8,0]])  
 
 # Creating text file to write the Node information
+# ======================================================================================================================================================================= #
+
 Nodes= open("Nodes.txt","w")
 nodePath=open("nodePath.txt","w")
 info=open("NodesInfo.txt","w")
 
 
-
-
+# Printing the position of blank tile
+# ======================================================================================================================================================================= #
 
 def print_blank(a):
 	for i,j in enumerate(a):
 		for k,l in enumerate(j):
 			if l==0:
 				return i,k
+
+
+# Swapping the blank tile with all possible moves
+# ======================================================================================================================================================================= #
+def Reverse(lst): 
+		return [ele for ele in reversed(lst)] 
 def swapping(data,i,k):
 	keys={(0,0):[(0,1),(1,0)],
 		  (0,1):[(0,0),(0,2),(1,1)],
@@ -55,7 +71,16 @@ def swapping(data,i,k):
 		possible.append(temp_data)    
 	return possible
 
-ds=[]
+# solving for solvable matrix only
+
+while (solvable==True):
+
+# defining parent Id, own Id of the input
+	parent_id= 0
+	own_id= 0
+
+# creating a dictionary to store Id's
+	ds=[]
 	ds.append([a,own_id,parent_id])
 	flag= False
 	i=0
@@ -99,6 +124,8 @@ ds=[]
 		else:
 			break
 		parent= ds[i]
+
+
 # Back tracking
 # ======================================================================================================================================================================= #
 
@@ -113,7 +140,9 @@ ds=[]
 		if(node_oid==0):
 			break
 		node_oid=node_pid
-# print(shortest_path)
+		
+		
+	# print(shortest_path)
 	i=len(shortest_path)
 	for i in range(len(shortest_path)-1,-1,-1):
 		info.write(str(shortest_path[i][1])+" "+str(shortest_path[i][2])+"\n")
@@ -123,15 +152,8 @@ ds=[]
 		nodePath.write("\n")
 	print(Reverse(shortest_path)) 
 
-		
-		
-	# print(shortest_path)
-	i=len(shortest_path)
 	
-	print(Reverse(shortest_path)) 
-
+	Nodes.close()
+	nodePath.close()
+	info.close()
 	
-
-
-
-
