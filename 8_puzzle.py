@@ -23,6 +23,9 @@ a=np.reshape(b, (3, 3))
 goal=np.array([[1,2,3],[4,5,6],[7,8,0]])  
 
 # Creating text file to write the Node information
+Nodes= open("Nodes.txt","w")
+nodePath=open("nodePath.txt","w")
+info=open("NodesInfo.txt","w")
 
 
 
@@ -110,6 +113,16 @@ ds=[]
 		if(node_oid==0):
 			break
 		node_oid=node_pid
+# print(shortest_path)
+	i=len(shortest_path)
+	for i in range(len(shortest_path)-1,-1,-1):
+		info.write(str(shortest_path[i][1])+" "+str(shortest_path[i][2])+"\n")
+		for c in range(3):
+			for r in range(3):
+				nodePath.write(str(shortest_path[i][0][r][c])+" ")
+		nodePath.write("\n")
+	print(Reverse(shortest_path)) 
+
 		
 		
 	# print(shortest_path)
